@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+:root {
+  --background: #292d34;
+  --background-alt: #121212;
+  --foreground: #e1e1e1;
+}
+
+@theme inline {
+  --background: var(--background);
+  --background-alt: var(--background-alt);
+  --foreground: var(--foreground);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
