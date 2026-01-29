@@ -1,0 +1,14 @@
+[Unit]
+Description=Next.js Simple Auth Application Service
+After=network.target
+
+[Service]
+Type=simple
+User=nginx
+Group=nginx
+ExecStart=/home/nginx/.local/share/pnpm/pnpm start
+WorkingDirectory=/var/www/auth.paxa.dev
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

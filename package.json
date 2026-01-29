@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production next start -p 3002",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "push": "drizzle-kit push"
   },
   "dependencies": {
     "next": "16.1.6",

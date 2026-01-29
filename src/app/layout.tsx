@@ -35,7 +35,13 @@ export default function RootLayout({
           </header>
           <main className="flex-1 overflow-y-scroll p-4">{children}</main>
           <footer className="w-full text-center border-t border-background-alt p-4">
-            Sources on <a href="https://github.com/sistematico/next-auth" className="underline">Github</a>
+            Sources on{" "}
+            <a
+              href="https://github.com/sistematico/next-auth"
+              className="underline"
+            >
+              Github
+            </a>
           </footer>
         </div>
       </body>
