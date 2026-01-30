@@ -1,34 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Simple Auth
 
-## Getting Started
+Sistema de autenticação simples e funcional construído com Next.js 16 App Router, Drizzle ORM e SQLite.
 
-First, run the development server:
+## 🚀 Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js** v16.1.6 - App Router
+- **TypeScript** - Type safety
+- **Drizzle ORM** - Database ORM
+- **SQLite** - Database
+- **TailwindCSS** v4 - Styling com tema escuro
+- **pnpm** - Package manager
+- **Zod** - Schema validation
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── actions.ts              # Server Actions (login, register, logout)
+├── schemas.ts              # Zod schemas para validação
+├── app/
+│   ├── (auth)/
+│   │   ├── login/          # Página de login
+│   │   └── register/       # Página de cadastro
+│   ├── api/auth/logout/    # API route para logout
+│   ├── dashboard/          # Página protegida
+│   ├── layout.tsx          # Layout principal
+│   └── page.tsx            # Home
+├── components/
+│   ├── auth/
+│   │   ├── SigninForm.tsx  # Formulário de login
+│   │   └── SignupForm.tsx  # Formulário de cadastro
+│   └── AuthNav.tsx         # Navegação autenticada
+├── db/
+│   ├── index.ts            # Conexão com DB
+│   ├── schema.ts           # Schema Drizzle
+│   └── seed.ts             # Seed data
+└── lib/
+    ├── password.ts         # Hash de senhas
+    └── session.ts          # Gestão de sessões
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Instale dependências**
+   ```bash
+   pnpm install
+   ```
 
-## Learn More
+2. **Configure o banco de dados**
+   ```bash
+   pnpm push
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Inicie o servidor**
+   ```bash
+   pnpm dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Acesse** `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📋 Features
 
-## Deploy on Vercel
+- ✅ **Login** - Autenticação com email e senha
+- ✅ **Cadastro** - Registro de novos usuários
+- ✅ **Logout** - Encerramento de sessão
+- ✅ **Sessões** - Gestão com cookies seguros
+- ✅ **Proteção de rotas** - Middleware para `/dashboard`
+- ✅ **Validação** - Zod schemas para forms
+- ✅ **UI Responsiva** - TailwindCSS com tema escuro
+- ✅ **Segurança** - Hash de senhas com crypto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔐 Segurança
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Senhas hasheadas com `crypto.scrypt()`
+- Sessões com cookies httpOnly e secure
+- Validação de inputs com Zod
+- Proteção contra timing attacks
+
+## 📝 Scripts
+
+- `pnpm dev` - Servidor de desenvolvimento
+- `pnpm build` - Build para produção
+- `pnpm start` - Servidor de produção
+- `pnpm lint` - Verificação com Biome
+- `pnpm format` - Formatação com Biome
+- `pnpm push` - Push do schema Drizzle
+
+## 🎨 Tema
+
+O projeto utiliza TailwindCSS v4 com tema escuro configurado. Os componentes seguem um design minimalista com bordas e transições suaves.

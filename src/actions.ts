@@ -10,7 +10,12 @@ import { comparePasswords, generateSalt, hashPassword } from "./lib/password";
 import { cookies } from "next/headers";
 import { createUserSession, removeUserFromSession } from "./lib/session";
 
-export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
+export async function signIn(state: string | null, formData: FormData) {
+  const unsafeData = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+
   const { success, data } = signInSchema.safeParse(unsafeData);
 
   if (!success) return "Unable to log you in";
@@ -37,7 +42,13 @@ export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
   redirect("/");
 }
 
-export async function signUp(unsafeData: z.infer<typeof signUpSchema>) {
+export async function signUp(state: string | null, formData: FormData) {
+  const unsafeData = {
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+
   const { success, data } = signUpSchema.safeParse(unsafeData);
 
   if (!success) return "Unable to create account";
