@@ -105,9 +105,7 @@ export default async function Home() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-purple-600">
-              Development Tools
-            </h4>
+            <h4 className="font-semibold text-purple-600">Development Tools</h4>
             <ul className="list-disc list-inside ml-2 space-y-1">
               <li>
                 <strong>Biome 2.2.0</strong> - Fast linter and code formatter
@@ -116,7 +114,8 @@ export default async function Home() {
                 <strong>pnpm</strong> - Fast and efficient package manager
               </li>
               <li>
-                <strong>Drizzle Kit 0.31.8</strong> - CLI for database migrations
+                <strong>Drizzle Kit 0.31.8</strong> - CLI for database
+                migrations
               </li>
             </ul>
           </div>
