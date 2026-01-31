@@ -20,9 +20,9 @@ export default function RootLayout({
     <html lang="en" className={nunito.className}>
       <body>
         <div className="flex flex-col h-screen overflow-hidden">
-          <header className="md:flex justify-between w-full text-center border-b border-background-alt p-4">
+          <header className="flex justify-between items-center w-full border-b border-background-alt p-4">
             <div>
-              <h2>Next.js Auth</h2>
+              <h2 className="text-lg font-bold">Next.js Auth</h2>
             </div>
             <AuthNav />
           </header>
