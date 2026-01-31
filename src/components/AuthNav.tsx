@@ -15,6 +15,11 @@ export default async function AuthNav() {
           <Link href="/dashboard" className="hover:underline">
             Dashboard
           </Link>
+          {user.role === "admin" && (
+            <Link href="/admin" className="hover:underline text-purple-600 font-semibold">
+              Admin
+            </Link>
+          )}
           <span className="text-sm text-gray-600">
             User {user.id} ({user.role})
           </span>

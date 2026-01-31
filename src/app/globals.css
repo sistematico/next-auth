@@ -1,9 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #292d34;
+  /* --background: #292d34; */
+  /* --background: #282c34;
   --background-alt: #121212;
-  --foreground: #e1e1e1;
+  --foreground: #e1e1e1; */
+
+  --atom-bg: #282c34;
+  --atom-bg-alt: #121212;
+  --atom-fg: #abb2bf;
+  --atom-red: #e06c75;
+  --atom-green: #98c379;
+  --atom-yellow: #d19a66;
+  --atom-blue: #61afef;
+  --atom-purple: #c678dd;
+  --atom-cyan: #56b6c2;
+  --atom-comment: #5c6370;
+
+  --background: var(--atom-bg);
+  --background-alt: var(--atom-bg-alt);
+  --foreground: var(--atom-fg);
 }
 
 @theme inline {
@@ -16,4 +32,24 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+  @apply text-xl font-bold;
+}
+
+h4 {
+  @apply text-lg font-bold;
+}
+
+h5 {
+  @apply text-base font-semibold;
 }

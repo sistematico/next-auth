@@ -21,7 +21,9 @@ export default function RootLayout({
       <body>
         <div className="flex flex-col h-screen overflow-hidden">
           <header className="md:flex justify-between w-full text-center border-b border-background-alt p-4">
-            <div>Next.js Simple Auth</div>
+            <div>
+              <h2>Next.js Auth</h2>
+            </div>
             <AuthNav />
           </header>
           <main className="flex-1 overflow-y-scroll p-4">{children}</main>
