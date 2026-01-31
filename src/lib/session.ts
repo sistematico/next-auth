@@ -1,5 +1,4 @@
 import { z } from "zod";
-import crypto from "node:crypto";
 
 // Seven days in seconds
 const SESSION_EXPIRATION_SECONDS = 60 * 60 * 24 * 7;
@@ -57,7 +56,7 @@ export async function createUserSession(
   cookies: Pick<Cookies, "set">,
 ) {
   const sessionId =
-    user.id != null ? String(user.id) : crypto.randomBytes(24).toString("hex");
+    user.id != null ? String(user.id) : await generateRandomId();
   // Coerce/validate role coming from DB (string) into the strict union our session schema expects
   const role = user.role === "admin" ? "admin" : "user";
   const userSession: UserSession = { id: sessionId, role };
@@ -91,4 +90,12 @@ function setCookie(session: UserSession, cookies: Pick<Cookies, "set">) {
     sameSite: "lax",
     expires: Date.now() + SESSION_EXPIRATION_SECONDS * 1000,
   });
+}
+
+async function generateRandomId(): Promise<string> {
+  const bytes = new Uint8Array(24);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }

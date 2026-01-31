@@ -1,36 +1,20 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
 import { signUp } from "@/actions";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      className="rounded px-3 py-2 border-2 border-black/50 transition-all hover:bg-black/50 cursor-pointer w-full disabled:opacity-50"
-      type="submit"
-      disabled={pending}
-    >
-      {pending ? "Creating account..." : "Sign Up"}
-    </button>
-  );
-}
-
 export default function SignupForm() {
-  const [state, formAction] = useFormState<string | null, FormData>(
-    signUp,
-    null,
-  );
+  const [state, action, pending] = useActionState(signUp, null);
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form action={action} className="space-y-4">
       {state && <p className="text-red-500">{state}</p>}
       <div>
         <label htmlFor="name" className="block text-sm font-medium mb-1">
           Name
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
           type="text"
           id="name"
           name="name"
@@ -42,7 +26,7 @@ export default function SignupForm() {
           E-mail
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
           type="email"
           id="email"
           name="email"
@@ -54,7 +38,7 @@ export default function SignupForm() {
           Password
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
           type="password"
           id="password"
           name="password"
@@ -62,7 +46,13 @@ export default function SignupForm() {
           minLength={8}
         />
       </div>
-      <SubmitButton />
+      <button
+        className="rounded px-3 py-2 border-2 border-black/50 transition-all hover:bg-black/50 cursor-pointer w-full disabled:opacity-50"
+        type="submit"
+        disabled={pending}
+      >
+        {pending ? "Creating account..." : "Sign Up"}
+      </button>
     </form>
   );
 }

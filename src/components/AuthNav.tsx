@@ -21,7 +21,7 @@ export default async function AuthNav() {
           <form action="/api/auth/logout" method="post">
             <button
               type="submit"
-              className="text-sm hover:underline text-red-600"
+              className="text-sm hover:underline text-red-600 cursor-pointer"
             >
               Logout
             </button>
