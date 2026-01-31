@@ -22,7 +22,7 @@
   --foreground: var(--atom-fg);
 }
 
-@theme inline {
+@theme {
   --background: var(--background);
   --background-alt: var(--background-alt);
   --foreground: var(--foreground);

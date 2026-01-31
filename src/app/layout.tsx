@@ -21,13 +21,27 @@ export default function RootLayout({
     <html lang="en" className={nunito.className}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="/nextjs_logo_icon.svg" type="image/xml+svg" sizes="any" />
+        <link
+          rel="shortcut icon"
+          href="/nextjs_logo_icon.svg"
+          type="image/xml+svg"
+          sizes="any"
+        />
       </head>
       <body>
         <div className="flex flex-col h-screen overflow-hidden">
           <header className="flex justify-between items-center w-full border-b-2 border-black/50 p-4">
-            <Link href="/" className="flex items-center gap-2 text-lg font-bold">
-              <Image src="/nextjs.svg" alt="Next.js" width={40} height={40} className="w-auto h-8 invert hover:opacity-20 duration-500" />
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-lg font-bold"
+            >
+              <Image
+                src="/nextjs.svg"
+                alt="Next.js"
+                width={40}
+                height={40}
+                className="w-auto h-8 invert hover:opacity-20 duration-500"
+              />
             </Link>
             <AuthNav />
           </header>

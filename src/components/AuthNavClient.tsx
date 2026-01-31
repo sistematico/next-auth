@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Home, Shield, User, LogOut, UserPlus } from "lucide-react";
+import { Home, Shield, User, LogOut, UserPlus, Cog } from "lucide-react";
 
 interface AuthNavProps {
   user?: {
@@ -43,20 +43,20 @@ export function AuthNavClient({ user }: AuthNavProps) {
       <nav className="hidden md:flex items-center space-x-4">
         {user ? (
           <>
-            <Link href="/" className="hover:underline transition-all">
-              <Home className="inline-block mr-1" />
+            <Link href="/" className="flex items-center gap-2">
+              <Home className="inline-block w-5 h-5 mr-1" />
               Home
             </Link>
-            <Link href="/dashboard" className="hover:underline transition-all">
-              <Shield className="inline-block mr-1" />
+            <Link href="/dashboard" className="flex items-center gap-2">
+              <Cog className="inline-block w-5 h-5 mr-1" />
               Dashboard
             </Link>
             {user.role === "admin" && (
               <Link
                 href="/admin"
-                className="hover:underline text-purple-600 font-semibold transition-all"
+                className="flex items-center gap-2 text-purple-600"
               >
-                <UserPlus className="inline-block mr-1" />
+                <Shield className="inline-block w-5 h-5 mr-1" />
                 Admin
               </Link>
             )}
@@ -66,25 +66,25 @@ export function AuthNavClient({ user }: AuthNavProps) {
             <form action="/api/auth/logout" method="post">
               <button
                 type="submit"
-                className="text-sm hover:underline text-red-600 cursor-pointer transition-all"
+                className="flex items-center gap-2 text-red-600 cursor-pointer"
               >
-                <LogOut className="inline-block mr-1" />
+                <LogOut className="inline-block w-5 h-5 mr-1" />
                 Logout
               </button>
             </form>
           </>
         ) : (
           <>
-            <Link href="/" className="hover:underline transition-all">
-              <Home className="inline-block mr-1" />
+            <Link href="/" className="flex items-center gap-2">
+              <Home className="inline-block w-5 h-5 mr-1" />
               Home
             </Link>
-            <Link href="/login" className="hover:underline transition-all">
-              <User className="inline-block mr-1" />
+            <Link href="/login" className="flex items-center gap-2">
+              <User className="inline-block w-5 h-5 mr-1" />
               Login
             </Link>
-            <Link href="/register" className="hover:underline transition-all">
-              <UserPlus className="inline-block mr-1" />
+            <Link href="/register" className="flex items-center gap-2">
+              <UserPlus className="inline-block w-5 h-5 mr-1" />
               Register
             </Link>
           </>
@@ -93,13 +93,13 @@ export function AuthNavClient({ user }: AuthNavProps) {
 
       {/* Mobile navigation */}
       {isOpen && (
-        <nav className="absolute top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg md:hidden z-50">
+        <nav className="absolute top-16 left-0 right-0 bg-background border-b border-gray-200 shadow-lg md:hidden z-50">
           <div className="flex flex-col space-y-2 p-4">
             {user ? (
               <>
                 <Link
                   href="/"
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  className="py-2 px-4 flex items-center gap-2 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   <Home className="inline-block mr-1" />
@@ -107,31 +107,31 @@ export function AuthNavClient({ user }: AuthNavProps) {
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  className="py-2 px-4 flex items-center gap-2 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  <Shield className="inline-block mr-1" />
+                  <Cog className="inline-block w-5 h-5 mr-1" />
                   Dashboard
                 </Link>
                 {user.role === "admin" && (
                   <Link
                     href="/admin"
-                    className="py-2 px-4 hover:bg-purple-50 text-purple-600 font-semibold rounded transition-colors"
+                    className="py-2 px-4 flex items-center gap-2 text-purple-600 font-semibold rounded transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    <UserPlus className="inline-block mr-1" />
+                    <Shield className="inline-block w-5 h-5 mr-1" />
                     Admin
                   </Link>
                 )}
-                <div className="py-2 px-4 text-sm text-gray-600 bg-gray-50 rounded">
+                <div className="py-2 px-4 flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded">
                   User {user.id} ({user.role})
                 </div>
                 <form action="/api/auth/logout" method="post">
                   <button
                     type="submit"
-                    className="w-full text-left py-2 px-4 hover:bg-red-50 text-red-600 rounded transition-colors"
+                    className="w-full text-left py-2 px-4 flex items-center gap-2 hover:bg-red-50 text-red-600 rounded transition-colors"
                   >
-                    <LogOut className="inline-block mr-1" />
+                    <LogOut className="inline-block w-5 h-5 mr-1" />
                     Logout
                   </button>
                 </form>
@@ -140,26 +140,26 @@ export function AuthNavClient({ user }: AuthNavProps) {
               <>
                 <Link
                   href="/"
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  className="py-2 px-4 flex items-center gap-2 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  <Home className="inline-block mr-1" />
+                  <Home className="inline-block w-5 h-5 mr-1" />
                   Home
                 </Link>
                 <Link
                   href="/login"
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  className="py-2 px-4 flex items-center gap-2 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  <User className="inline-block mr-1" />
+                  <User className="inline-block w-5 h-5 mr-1" />
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  className="py-2 px-4 flex items-center gap-2 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  <UserPlus className="inline-block mr-1" />
+                  <UserPlus className="inline-block w-5 h-5 mr-1" />
                   Register
                 </Link>
               </>

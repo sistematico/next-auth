@@ -21,9 +21,9 @@ Painel completo de administração para gerenciamento de usuários com funcional
 Execute o seed para criar usuários de teste:
 
 ```bash
-npm run db:seed
+npm run seed
 # ou
-pnpm db:seed
+pnpm seed
 ```
 
 Isso criará:
