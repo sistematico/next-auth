@@ -28,13 +28,13 @@ export function UserForm({ user }: { user?: User }) {
       router.refresh();
       return null;
     },
-    null
+    null,
   );
 
   return (
     <form action={formAction} className="bg-white shadow-md rounded-lg p-6">
       {user && <input type="hidden" name="id" value={user.id} />}
-      
+
       {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
           {error}
@@ -42,7 +42,10 @@ export function UserForm({ user }: { user?: User }) {
       )}
 
       <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Nome
         </label>
         <input
@@ -56,7 +59,10 @@ export function UserForm({ user }: { user?: User }) {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Email
         </label>
         <input
@@ -70,7 +76,10 @@ export function UserForm({ user }: { user?: User }) {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Senha {user && "(deixe em branco para manter a atual)"}
         </label>
         <input
@@ -84,7 +93,10 @@ export function UserForm({ user }: { user?: User }) {
       </div>
 
       <div className="mb-6">
-        <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="role"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Permissão
         </label>
         <select

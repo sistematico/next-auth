@@ -9,7 +9,7 @@ type Params = Promise<{ id: string }>;
 
 export default async function EditUserPage({ params }: { params: Params }) {
   await requireAdmin();
-  
+
   const { id } = await params;
   const userId = Number(id);
 
@@ -30,7 +30,9 @@ export default async function EditUserPage({ params }: { params: Params }) {
   return (
     <div className="py-8">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Editar Usuário</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          Editar Usuário
+        </h1>
         <UserForm user={user} />
       </div>
     </div>

@@ -31,7 +31,7 @@ async function main() {
   };
 
   await db.insert(users).values([adminUser, normalUser]).onConflictDoNothing();
-  
+
   console.log("✅ Seed completo!");
   console.log("Admin: admin@example.com / admin123");
   console.log("User: john@example.com / user123");

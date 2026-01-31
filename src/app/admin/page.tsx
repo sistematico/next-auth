@@ -37,7 +37,9 @@ export default async function AdminDashboard() {
   return (
     <div className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard Admin</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          Dashboard Admin
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat) => (
@@ -46,7 +48,9 @@ export default async function AdminDashboard() {
               href={stat.href}
               className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition"
             >
-              <p className="text-sm font-medium text-gray-600 mb-2">{stat.name}</p>
+              <p className="text-sm font-medium text-gray-600 mb-2">
+                {stat.name}
+              </p>
               <p className={`text-4xl font-bold text-${stat.color}-600`}>
                 {stat.value}
               </p>

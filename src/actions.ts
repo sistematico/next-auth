@@ -1,13 +1,22 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { signInSchema, signUpSchema, adminCreateUserSchema, adminUpdateUserSchema } from "./schemas";
+import {
+  signInSchema,
+  signUpSchema,
+  adminCreateUserSchema,
+  adminUpdateUserSchema,
+} from "./schemas";
 import { db } from "./db";
 import { users } from "./db/schema";
 import { eq, desc, count } from "drizzle-orm";
 import { comparePasswords, generateSalt, hashPassword } from "./lib/password";
 import { cookies } from "next/headers";
-import { createUserSession, removeUserFromSession, getUserFromSession } from "./lib/session";
+import {
+  createUserSession,
+  removeUserFromSession,
+  getUserFromSession,
+} from "./lib/session";
 
 export async function signIn(_state: string | null, formData: FormData) {
   const unsafeData = {
@@ -98,18 +107,18 @@ async function requireAdmin() {
 // Admin - Lista usuários com paginação
 export async function adminGetUsers(page: number = 1, pageSize: number = 10) {
   await requireAdmin();
-  
+
   const offset = (page - 1) * pageSize;
-  
+
   const [userList, totalCount] = await Promise.all([
     db.query.users.findMany({
-      columns: { 
-        id: true, 
-        name: true, 
-        email: true, 
-        role: true, 
+      columns: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
         createdAt: true,
-        updatedAt: true
+        updatedAt: true,
       },
       orderBy: [desc(users.createdAt)],
       limit: pageSize,
@@ -138,7 +147,8 @@ export async function adminCreateUser(formData: FormData) {
       role: formData.get("role") as string,
     };
 
-    const { success, data, error } = adminCreateUserSchema.safeParse(unsafeData);
+    const { success, data, error } =
+      adminCreateUserSchema.safeParse(unsafeData);
 
     if (!success) {
       return { error: error.issues[0]?.message || "Dados inválidos" };
@@ -165,7 +175,9 @@ export async function adminCreateUser(formData: FormData) {
 
     return { success: true };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : "Erro ao criar usuário" };
+    return {
+      error: error instanceof Error ? error.message : "Erro ao criar usuário",
+    };
   }
 }
 
@@ -178,11 +190,12 @@ export async function adminUpdateUser(formData: FormData) {
       id: Number(formData.get("id")),
       name: formData.get("name") as string,
       email: formData.get("email") as string,
-      password: formData.get("password") as string || undefined,
+      password: (formData.get("password") as string) || undefined,
       role: formData.get("role") as string,
     };
 
-    const { success, data, error } = adminUpdateUserSchema.safeParse(unsafeData);
+    const { success, data, error } =
+      adminUpdateUserSchema.safeParse(unsafeData);
 
     if (!success) {
       return { error: error.issues[0]?.message || "Dados inválidos" };
@@ -218,7 +231,10 @@ export async function adminUpdateUser(formData: FormData) {
 
     return { success: true };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : "Erro ao atualizar usuário" };
+    return {
+      error:
+        error instanceof Error ? error.message : "Erro ao atualizar usuário",
+    };
   }
 }
 
@@ -235,6 +251,8 @@ export async function adminDeleteUser(userId: number) {
 
     return { success: true };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : "Erro ao deletar usuário" };
+    return {
+      error: error instanceof Error ? error.message : "Erro ao deletar usuário",
+    };
   }
 }

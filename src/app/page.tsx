@@ -40,7 +40,9 @@ export default async function Home() {
   return (
     <main className="max-w-2xl mx-auto">
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-        <h2 className="text-gray-700 text-xl font-semibold mb-3">Authentication Demo</h2>
+        <h2 className="text-gray-700 text-xl font-semibold mb-3">
+          Authentication Demo
+        </h2>
         <p className="text-gray-700 mb-4">
           This is a simple authentication system built with Next.js 16 App
           Router. You can register a new account or log in with existing

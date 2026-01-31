@@ -11,17 +11,22 @@ export default async function AdminUsersPage({
   searchParams: SearchParams;
 }) {
   await requireAdmin();
-  
+
   const params = await searchParams;
   const page = Number(params.page) || 1;
-  const { users, totalPages, currentPage, totalCount } = await adminGetUsers(page, 10);
+  const { users, totalPages, currentPage, totalCount } = await adminGetUsers(
+    page,
+    10,
+  );
 
   return (
     <div className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Gerenciar Usuários</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Gerenciar Usuários
+            </h1>
             <p className="text-gray-600 mt-2">Total: {totalCount} usuários</p>
           </div>
           <Link
@@ -108,35 +113,37 @@ export default async function AdminUsersPage({
                 Anterior
               </Link>
             )}
-            
+
             <div className="flex space-x-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-                if (
-                  pageNum === 1 ||
-                  pageNum === totalPages ||
-                  (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
-                ) {
-                  return (
-                    <Link
-                      key={pageNum}
-                      href={`/admin/users?page=${pageNum}`}
-                      className={`px-3 py-2 rounded-md ${
-                        pageNum === currentPage
-                          ? "bg-blue-600 text-white"
-                          : "bg-white border border-gray-300 hover:bg-gray-50"
-                      }`}
-                    >
-                      {pageNum}
-                    </Link>
-                  );
-                } else if (
-                  pageNum === currentPage - 2 ||
-                  pageNum === currentPage + 2
-                ) {
-                  return <span key={pageNum}>...</span>;
-                }
-                return null;
-              })}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (pageNum) => {
+                  if (
+                    pageNum === 1 ||
+                    pageNum === totalPages ||
+                    (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                  ) {
+                    return (
+                      <Link
+                        key={pageNum}
+                        href={`/admin/users?page=${pageNum}`}
+                        className={`px-3 py-2 rounded-md ${
+                          pageNum === currentPage
+                            ? "bg-blue-600 text-white"
+                            : "bg-white border border-gray-300 hover:bg-gray-50"
+                        }`}
+                      >
+                        {pageNum}
+                      </Link>
+                    );
+                  } else if (
+                    pageNum === currentPage - 2 ||
+                    pageNum === currentPage + 2
+                  ) {
+                    return <span key={pageNum}>...</span>;
+                  }
+                  return null;
+                },
+              )}
             </div>
 
             {currentPage < totalPages && (

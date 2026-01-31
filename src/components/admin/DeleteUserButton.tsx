@@ -4,7 +4,13 @@ import { adminDeleteUser } from "@/actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function DeleteUserButton({ userId, userName }: { userId: number; userName: string }) {
+export function DeleteUserButton({
+  userId,
+  userName,
+}: {
+  userId: number;
+  userName: string;
+}) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
 

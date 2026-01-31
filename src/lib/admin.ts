@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 
 export async function requireAdmin() {
   const session = getUserFromSession(await cookies());
-  
+
   if (!session || session.role !== "admin") {
     redirect("/");
   }
-  
+
   return session;
 }
 

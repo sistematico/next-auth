@@ -4,7 +4,11 @@ import { getUserFromSession } from "@/lib/session";
 export default function proxy(request: NextRequest) {
   const user = getUserFromSession(request.cookies);
 
-  if ((request.nextUrl.pathname.startsWith("/dashboard") || request.nextUrl.pathname === "/dashboard") && !user) {
+  if (
+    (request.nextUrl.pathname.startsWith("/dashboard") ||
+      request.nextUrl.pathname === "/dashboard") &&
+    !user
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
