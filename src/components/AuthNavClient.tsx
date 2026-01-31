@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
+import { Home, Shield, User, LogOut, UserPlus } from "lucide-react";
 
 interface AuthNavProps {
   user?: {
@@ -43,9 +44,11 @@ export function AuthNavClient({ user }: AuthNavProps) {
         {user ? (
           <>
             <Link href="/" className="hover:underline transition-all">
+              <Home className="inline-block mr-1" />
               Home
             </Link>
             <Link href="/dashboard" className="hover:underline transition-all">
+              <Shield className="inline-block mr-1" />
               Dashboard
             </Link>
             {user.role === "admin" && (
@@ -53,6 +56,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                 href="/admin"
                 className="hover:underline text-purple-600 font-semibold transition-all"
               >
+                <UserPlus className="inline-block mr-1" />
                 Admin
               </Link>
             )}
@@ -64,6 +68,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                 type="submit"
                 className="text-sm hover:underline text-red-600 cursor-pointer transition-all"
               >
+                <LogOut className="inline-block mr-1" />
                 Logout
               </button>
             </form>
@@ -71,12 +76,15 @@ export function AuthNavClient({ user }: AuthNavProps) {
         ) : (
           <>
             <Link href="/" className="hover:underline transition-all">
+              <Home className="inline-block mr-1" />
               Home
             </Link>
             <Link href="/login" className="hover:underline transition-all">
+              <User className="inline-block mr-1" />
               Login
             </Link>
             <Link href="/register" className="hover:underline transition-all">
+              <UserPlus className="inline-block mr-1" />
               Register
             </Link>
           </>
@@ -94,6 +102,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
+                  <Home className="inline-block mr-1" />
                   Home
                 </Link>
                 <Link
@@ -101,6 +110,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
+                  <Shield className="inline-block mr-1" />
                   Dashboard
                 </Link>
                 {user.role === "admin" && (
@@ -109,6 +119,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                     className="py-2 px-4 hover:bg-purple-50 text-purple-600 font-semibold rounded transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
+                    <UserPlus className="inline-block mr-1" />
                     Admin
                   </Link>
                 )}
@@ -120,6 +131,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                     type="submit"
                     className="w-full text-left py-2 px-4 hover:bg-red-50 text-red-600 rounded transition-colors"
                   >
+                    <LogOut className="inline-block mr-1" />
                     Logout
                   </button>
                 </form>
@@ -131,6 +143,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
+                  <Home className="inline-block mr-1" />
                   Home
                 </Link>
                 <Link
@@ -138,6 +151,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
+                  <User className="inline-block mr-1" />
                   Login
                 </Link>
                 <Link
@@ -145,6 +159,7 @@ export function AuthNavClient({ user }: AuthNavProps) {
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
+                  <UserPlus className="inline-block mr-1" />
                   Register
                 </Link>
               </>
