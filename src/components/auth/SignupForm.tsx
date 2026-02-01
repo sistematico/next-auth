@@ -3,12 +3,22 @@
 import { useActionState } from "react";
 import { signUp } from "@/actions";
 
+const initialState = {
+  message: "",
+  error: false,
+  inputs: {
+    name: "",
+    email: "",
+    password: "",
+  },
+};
+
 export default function SignupForm() {
-  const [state, action, pending] = useActionState(signUp, null);
+  const [state, action, pending] = useActionState(signUp, initialState);
 
   return (
     <form action={action} className="space-y-4">
-      {state && <p className="text-red-500">{state}</p>}
+      {state.message && <p className="text-red-500">{state.message}</p>}
       <div>
         <label htmlFor="name" className="block text-sm font-medium mb-1">
           Name
@@ -19,6 +29,7 @@ export default function SignupForm() {
           id="name"
           name="name"
           required
+          defaultValue={state.inputs.name}
         />
       </div>
       <div>
@@ -31,6 +42,7 @@ export default function SignupForm() {
           id="email"
           name="email"
           required
+          defaultValue={state.inputs.email}
         />
       </div>
       <div>
@@ -43,7 +55,8 @@ export default function SignupForm() {
           id="password"
           name="password"
           required
-          minLength={8}
+          minLength={3}
+          defaultValue={state.inputs.password}
         />
       </div>
       <button

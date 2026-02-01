@@ -3,12 +3,21 @@
 import { useActionState } from "react";
 import { signIn } from "@/actions";
 
+const initialState = {
+  message: "",
+  error: false,
+  inputs: {
+    email: "",
+    password: "",
+  },
+};
+
 export default function SigninForm() {
-  const [state, action, pending] = useActionState(signIn, null);
+  const [state, action, pending] = useActionState(signIn, initialState);
 
   return (
     <form action={action} className="space-y-4">
-      {state && <p className="text-red-500">{state}</p>}
+      {state.message && <p className="text-red-500">{state.message}</p>}
       <div>
         <label htmlFor="email" className="block text-sm font-medium mb-1">
           E-mail
@@ -17,8 +26,9 @@ export default function SigninForm() {
           type="email"
           id="email"
           name="email"
-          required
           className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
+          defaultValue={state.inputs.email}
+          required
         />
       </div>
       <div>
@@ -30,6 +40,7 @@ export default function SigninForm() {
           type="password"
           id="password"
           name="password"
+          defaultValue={state.inputs.password}
           required
         />
       </div>

@@ -18,15 +18,34 @@ import {
   getUserFromSession,
 } from "./lib/session";
 
-export async function signIn(_state: string | null, formData: FormData) {
-  const unsafeData = {
+// Base interface for form action state
+interface ActionState<T> {
+  message: string;
+  error: boolean;
+  inputs: T;
+}
+
+// Specific state types for auth actions
+type SignUpState = ActionState<{
+  name: string;
+  email: string;
+  password: string;
+}>;
+
+type SignInState = ActionState<{
+  email: string;
+  password: string;
+}>;
+
+export async function signIn(_prevState: SignInState, formData: FormData) {
+  const inputs = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { success, data } = signInSchema.safeParse(unsafeData);
+  const { success, data } = signInSchema.safeParse(inputs);
 
-  if (!success) return "Unable to log you in";
+  if (!success) return { message: "Unable to log you in", error: true, inputs };
 
   const user = await db.query.users.findFirst({
     columns: { password: true, salt: true, id: true, email: true, role: true },
@@ -34,7 +53,7 @@ export async function signIn(_state: string | null, formData: FormData) {
   });
 
   if (user == null || user.password == null || user.salt == null) {
-    return "Unable to log you in";
+    return { message: "Unable to log you in", error: true, inputs };
   }
 
   const isCorrectPassword = await comparePasswords({
@@ -43,29 +62,29 @@ export async function signIn(_state: string | null, formData: FormData) {
     salt: user.salt,
   });
 
-  if (!isCorrectPassword) return "Unable to log you in";
+  if (!isCorrectPassword) return { message: "Unable to log you in", error: true, inputs };
 
   await createUserSession(user, await cookies());
 
   redirect("/");
 }
 
-export async function signUp(_state: string | null, formData: FormData) {
-  const unsafeData = {
+export async function signUp(_prevState: SignUpState, formData: FormData) {
+  const inputs = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { success, data } = signUpSchema.safeParse(unsafeData);
+  const { success, data } = signUpSchema.safeParse(inputs);
 
-  if (!success) return "Unable to create account";
+  if (!success) return { message: "Unable to create account", error: true, inputs };
 
   const existingUser = await db.query.users.findFirst({
     where: eq(users.email, data.email),
   });
 
-  if (existingUser != null) return "Account already exists for this email";
+  if (existingUser != null) return { message: "Account already exists for this email", error: true, inputs };
 
   try {
     const salt = generateSalt();
@@ -81,10 +100,10 @@ export async function signUp(_state: string | null, formData: FormData) {
       })
       .returning({ id: users.id, role: users.role });
 
-    if (user == null) return "Unable to create account";
+    if (user == null) return { message: "Unable to create account", error: true, inputs };
     await createUserSession(user, await cookies());
   } catch {
-    return "Unable to create account";
+    return { message: "Unable to create account", error: true, inputs };
   }
 
   redirect("/");
