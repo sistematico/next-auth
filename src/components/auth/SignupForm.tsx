@@ -24,12 +24,13 @@ export default function SignupForm() {
           Name
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none"
           type="text"
           id="name"
           name="name"
-          required
+          autoComplete="new-password"
           defaultValue={state.inputs.name}
+          required
         />
       </div>
       <div>
@@ -37,11 +38,12 @@ export default function SignupForm() {
           E-mail
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none"
           type="email"
           id="email"
           name="email"
           required
+          autoComplete="new-password"
           defaultValue={state.inputs.email}
         />
       </div>
@@ -50,13 +52,14 @@ export default function SignupForm() {
           Password
         </label>
         <input
-          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:outline-none"
+          className="w-full rounded border-2 border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none"
           type="password"
           id="password"
           name="password"
-          required
           minLength={3}
+          autoComplete="new-password"
           defaultValue={state.inputs.password}
+          required
         />
       </div>
       <button

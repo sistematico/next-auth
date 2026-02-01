@@ -62,7 +62,8 @@ export async function signIn(_prevState: SignInState, formData: FormData) {
     salt: user.salt,
   });
 
-  if (!isCorrectPassword) return { message: "Unable to log you in", error: true, inputs };
+  if (!isCorrectPassword)
+    return { message: "Unable to log you in", error: true, inputs };
 
   await createUserSession(user, await cookies());
 
@@ -78,13 +79,19 @@ export async function signUp(_prevState: SignUpState, formData: FormData) {
 
   const { success, data } = signUpSchema.safeParse(inputs);
 
-  if (!success) return { message: "Unable to create account", error: true, inputs };
+  if (!success)
+    return { message: "Unable to create account", error: true, inputs };
 
   const existingUser = await db.query.users.findFirst({
     where: eq(users.email, data.email),
   });
 
-  if (existingUser != null) return { message: "Account already exists for this email", error: true, inputs };
+  if (existingUser != null)
+    return {
+      message: "Account already exists for this email",
+      error: true,
+      inputs,
+    };
 
   try {
     const salt = generateSalt();
@@ -100,7 +107,8 @@ export async function signUp(_prevState: SignUpState, formData: FormData) {
       })
       .returning({ id: users.id, role: users.role });
 
-    if (user == null) return { message: "Unable to create account", error: true, inputs };
+    if (user == null)
+      return { message: "Unable to create account", error: true, inputs };
     await createUserSession(user, await cookies());
   } catch {
     return { message: "Unable to create account", error: true, inputs };
